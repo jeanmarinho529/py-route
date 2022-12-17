@@ -66,10 +66,12 @@ def test_transaction_typing_point(point_data, key, value, expected):
 
 
 def test_should_throw_maximum_number_destinations_exception(point_data):
+    max_points = settings.MAX_POINTS
     with pytest.raises(ValidationError) as exec_info:
         settings.MAX_POINTS = 1
         Point(**point_data)
 
+    settings.MAX_POINTS = max_points
     assert exec_info.value.errors()[0]["msg"] == "maximum number of locations reached"
 
 
