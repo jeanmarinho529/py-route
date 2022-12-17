@@ -26,3 +26,8 @@ async def docs_redirect():
 @app.post("/", response_model=RouteModel)
 async def route(point: Point):
     return await Route.process(point)
+
+
+@app.get("/ping/")
+def pong():
+    return {"ping": "pong!"}
