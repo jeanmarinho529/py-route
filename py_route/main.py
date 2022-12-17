@@ -1,18 +1,19 @@
 from fastapi import FastAPI
 from starlette.responses import RedirectResponse
 
+from .config import settings
 from .handler import Route
 from .model import Geolocation, Points
 from .model import Route as RouteModel
 
 app = FastAPI(
-    title="Py Route",
+    title=settings.APP_NAME,
     description="d",
-    version="0.1.0",
+    version=settings.VERSION,
     contact={
         "name": "Jean Marinho",
         "url": "http://x-force.example.com/contact/",
-        "email": "jeanmarinho529@gmail.com",
+        "email": settings.ADMIN_EMAIL,
     },
 )
 

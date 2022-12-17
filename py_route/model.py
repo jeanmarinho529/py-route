@@ -1,5 +1,7 @@
 from pydantic import BaseModel, Field, validator
 
+from .config import settings
+
 
 class Geolocation(BaseModel):
     lat: float = Field(title="dddd")
@@ -13,7 +15,7 @@ class Points(BaseModel):
 
     @validator("destinations")
     def _check_maximum_qty(cls, v) -> list[Geolocation]:
-        if len(v) > 10:
+        if len(v) > settings.MAX_POINTS:
             raise ValueError("maximum number of locations reached")
         return v
 

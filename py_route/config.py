@@ -1,11 +1,13 @@
-# from pydantic import BaseSettings
+from pydantic import BaseSettings
 
 
-# class Settings(BaseSettings):
-#     app_name: str = "Awesome API"
-#     admin_email: str
+class Settings(BaseSettings):
+    APP_NAME: str = "Py Route"
+    VERSION: str = "0.1.0"
 
-#     class Config:
-#         env_file = ".env"
+    ADMIN_EMAIL: str = "jeanmarinho529@gmail.com"
 
-# # a = Settings()
+    MAX_POINTS: int = 10
+
+
+settings = Settings()
