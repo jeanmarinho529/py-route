@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "Py Route"
+version = "0.1.0"
+description = "Find the shortest distance between points."
+authors = ["Jean Marinho <jeanmarinho529@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.88.0"
+uvicorn = "^0.20.0"
+geopy = "^2.3.0"
+pre-commit = "^2.20.0"
+pytest-cov = "^4.0.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.2.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.skjold]
+sources = ["pypa"]
+report_only = true
+verbose = true
