@@ -289,6 +289,17 @@ pytest = ">=4.6"
 testing = ["fields", "hunter", "process-tests", "six", "pytest-xdist", "virtualenv"]
 
 [[package]]
+name = "python-dotenv"
+version = "0.21.0"
+description = "Read key-value pairs from a .env file and set them as environment variables"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+cli = ["click (>=5.0)"]
+
+[[package]]
 name = "pyyaml"
 version = "6.0"
 description = "YAML parser and emitter for Python"
@@ -377,7 +388,7 @@ testing = ["coverage (>=6.2)", "coverage-enable-subprocess (>=1)", "flaky (>=3.7
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "c1d73338c5fe39d65642de2da519355018245b6ae77930a3f57cea7725168294"
+content-hash = "10066cb8a04333215963990e02a4ea90079489b977e19195c9528d22268512d0"
 
 [metadata.files]
 anyio = []
@@ -404,6 +415,7 @@ pre-commit = []
 pydantic = []
 pytest = []
 pytest-cov = []
+python-dotenv = []
 pyyaml = []
 sniffio = []
 starlette = []
