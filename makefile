@@ -9,5 +9,3 @@ update-precommit:
 
 runserver:
 	uvicorn py_route.main:app --port 8001 --reload
-
-# uvicorn main:app --reload

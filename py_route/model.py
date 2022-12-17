@@ -4,7 +4,7 @@ from .config import settings
 
 
 class Geolocation(BaseModel):
-    lat: float = Field(title="dddd")
+    lat: float
     long: float
 
 
