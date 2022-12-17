@@ -1,6 +1,7 @@
 import pytest
 from pydantic.error_wrappers import ValidationError
 
+from py_route.config import settings
 from py_route.model import Geolocation, Points, Route
 
 
@@ -63,6 +64,14 @@ def test_transaction_typing_point(point_data, key, value, expected):
         Points(**point_data)
 
     assert exec_info.value.errors()[0]["msg"] == expected
+
+
+def test_should_throw_maximum_number_destinations_exception(point_data):
+    with pytest.raises(ValidationError) as exec_info:
+        settings.MAX_POINTS = 1
+        Points(**point_data)
+
+    assert exec_info.value.errors()[0]["msg"] == "maximum number of locations reached"
 
 
 def test_should_create_route(route_data):
