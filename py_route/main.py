@@ -8,7 +8,7 @@ from .model import Route as RouteModel
 
 app = FastAPI(
     title=settings.APP_NAME,
-    description="d",
+    description="",
     version=settings.VERSION,
     contact={
         "name": "Jean Marinho",
@@ -29,5 +29,5 @@ async def route(point: Point):
 
 
 @app.get("/ping/")
-def pong():
+def ping():
     return {"ping": "pong!"}
