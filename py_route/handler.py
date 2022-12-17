@@ -2,17 +2,17 @@ from itertools import permutations
 
 from geopy.distance import geodesic
 
-from .model import Geolocation, Points
+from .model import Geolocation, Point
 from .model import Route as RouteModel
 
 
 class Route:
-    async def process(points: Points) -> list[tuple]:
-        destination_points = await Route._destination_points(points)
+    async def process(point: Point) -> list[tuple]:
+        destination_points = await Route._destination_points(point)
         combinations = await Route._all_combinations(destination_points)
-        return await Route._calculate_distances(combinations, points)
+        return await Route._calculate_distances(combinations, point)
 
-    async def _destination_points(point: Points):
+    async def _destination_points(point: Point):
         destination_points = []
         for geo in point.destinations:
             destination_points.append(tuple((geo.lat, geo.long)))
@@ -24,7 +24,7 @@ class Route:
         [combinations.append(geo) for geo in list(permutations(geolocations))]
         return combinations
 
-    async def _calculate_distances(geolocations, points: Points) -> map:
+    async def _calculate_distances(geolocations, points: Point) -> map:
         starting_point = (points.origin.lat, points.origin.long)
 
         final_distance = None

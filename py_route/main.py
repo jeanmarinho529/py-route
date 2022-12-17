@@ -3,7 +3,7 @@ from starlette.responses import RedirectResponse
 
 from .config import settings
 from .handler import Route
-from .model import Geolocation, Points
+from .model import Geolocation, Point
 from .model import Route as RouteModel
 
 app = FastAPI(
@@ -24,5 +24,5 @@ async def docs_redirect():
 
 
 @app.post("/", response_model=RouteModel)
-async def route(points: Points):
-    return await Route.process(points)
+async def route(point: Point):
+    return await Route.process(point)

@@ -8,10 +8,9 @@ class Geolocation(BaseModel):
     long: float
 
 
-class Points(BaseModel):
+class Point(BaseModel):
     origin: Geolocation
     destinations: list[Geolocation]
-    destination_points: list[tuple[float, float]] = []
 
     @validator("destinations")
     def _check_maximum_qty(cls, v) -> list[Geolocation]:
