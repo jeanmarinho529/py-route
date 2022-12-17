@@ -3,7 +3,7 @@ from starlette.responses import RedirectResponse
 
 from .config import settings
 from .handler import Route
-from .model import Geolocation, Point
+from .model import Point
 from .model import Route as RouteModel
 
 app = FastAPI(
