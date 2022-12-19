@@ -8,7 +8,7 @@ from py_route.main import app
 client = TestClient(app)
 
 
-def test_ping():
+def test_pong():
     response = client.get("/ping/")
 
     assert response.status_code == HTTPStatus.OK

@@ -29,5 +29,5 @@ async def route(point: Point):
 
 
 @app.get("/ping/")
-def ping():
+async def pong():
     return {"ping": "pong!"}

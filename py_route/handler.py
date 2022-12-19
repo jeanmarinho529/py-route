@@ -7,24 +7,24 @@ from .model import Route as RouteModel
 
 
 class Route:
-    async def process(point: Point) -> list[tuple]:
-        destination_points = await Route._destination_points(point)
-        combinations = await Route._all_combinations(destination_points)
-        return await Route._calculate_distances(combinations, point)
+    async def process(point: Point) -> RouteModel:
+        destination_points = await Route._format_destination_points(point)
+        combinations = await Route._all_destination_combinations(destination_points)
+        return await Route._find_best_route(combinations, point)
 
-    async def _destination_points(point: Point):
+    async def _format_destination_points(point: Point) -> list[tuple]:
         destination_points = []
         for geo in point.destinations:
             destination_points.append(tuple((geo.lat, geo.long)))
 
         return destination_points
 
-    async def _all_combinations(geolocations: list[tuple]) -> list[tuple]:
+    async def _all_destination_combinations(geolocations: list[tuple]) -> list[tuple]:
         combinations = []
         [combinations.append(geo) for geo in list(permutations(geolocations))]
         return combinations
 
-    async def _calculate_distances(geolocations, points: Point) -> map:
+    async def _find_best_route(geolocations: list[tuple], points: Point) -> RouteModel:
         starting_point = (points.origin.lat, points.origin.long)
 
         final_distance = None
