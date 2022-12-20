@@ -3,7 +3,7 @@ from http import HTTPStatus
 import pytest
 from fastapi.testclient import TestClient
 
-from py_route.main import app
+from app.main import app
 
 client = TestClient(app)
 

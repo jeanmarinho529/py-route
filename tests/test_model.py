@@ -1,8 +1,8 @@
 import pytest
 from pydantic.error_wrappers import ValidationError
 
-from py_route.config import settings
-from py_route.model import Geolocation, Point, Route
+from app.config import settings
+from app.model import Geolocation, Point, Route
 
 
 def test_should_create_geolocation(geolocation_data):

@@ -1,8 +1,8 @@
 import pytest
 
-from py_route.handler import Route
-from py_route.model import Point
-from py_route.model import Route as RouteModel
+from app.handler import Route
+from app.model import Point
+from app.model import Route as RouteModel
 
 
 @pytest.mark.asyncio
