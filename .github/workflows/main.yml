@@ -1,0 +1,35 @@
+name: Actions
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+
+    - name: Poetry
+      uses: Gr1N/setup-poetry@v7
+
+    - name: Install dependencies
+      run: poetry install
+
+    - name: Lint
+      run: |
+        poetry run pre-commit install
+        poetry run pre-commit run -a -v
+
+    - name: Test
+      run: poetry run pytest -sx --cov
