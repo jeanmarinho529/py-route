@@ -12,9 +12,9 @@ Py Routes is an api, developed using the Python language with the FastApi framew
 - FastApi;
 - Pydantic;
 - Pytest;
-- pre commit config;
-- makefile;
-- Poetry;
+- Pre commit config;
+- Makefile;
+- Poetry.
 
 ### Installation
 
