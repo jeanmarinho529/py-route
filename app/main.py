@@ -1,18 +1,19 @@
 from fastapi import FastAPI
 from starlette.responses import RedirectResponse
 
+from .config import settings
 from .handler import Route
-from .model import Geolocation, Points
+from .model import Point
 from .model import Route as RouteModel
 
 app = FastAPI(
-    title="Py Route",
-    description="d",
-    version="0.1.0",
+    title=settings.APP_NAME,
+    description="",
+    version=settings.VERSION,
     contact={
         "name": "Jean Marinho",
         "url": "http://x-force.example.com/contact/",
-        "email": "jeanmarinho529@gmail.com",
+        "email": settings.ADMIN_EMAIL,
     },
 )
 
@@ -23,5 +24,10 @@ async def docs_redirect():
 
 
 @app.post("/", response_model=RouteModel)
-async def route(points: Points):
-    return await Route.process(points)
+async def route(point: Point):
+    return await Route.process(point)
+
+
+@app.get("/ping/")
+async def pong():
+    return {"ping": "pong!"}

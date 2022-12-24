@@ -1,0 +1,33 @@
+import pytest
+
+from app.handler import Route
+from app.model import Point
+from app.model import Route as RouteModel
+
+
+@pytest.mark.asyncio
+async def test_should_enter_points_return_route(point_data, route_data):
+    point = Point(**point_data)
+    route = RouteModel(**route_data)
+
+    assert await Route.process(point) == route
+
+
+@pytest.mark.asyncio
+async def test_should_convert_dict_to_list(points, point_data):
+    point = Point(**point_data)
+
+    assert await Route._format_destination_points(point) == points
+
+
+@pytest.mark.asyncio
+async def test_should_return_combination_all_points(points, combination_all_points):
+    assert await Route._all_destination_combinations(points) == combination_all_points
+
+
+@pytest.mark.asyncio
+async def test_must_find_best_route(combination_all_points, point_data, route_data):
+    point = Point(**point_data)
+    route = RouteModel(**route_data)
+
+    assert await Route._find_best_route(combination_all_points, point) == route

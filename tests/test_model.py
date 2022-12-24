@@ -1,7 +1,8 @@
 import pytest
 from pydantic.error_wrappers import ValidationError
 
-from py_route.model import Geolocation, Points, Route
+from app.config import settings
+from app.model import Geolocation, Point, Route
 
 
 def test_should_create_geolocation(geolocation_data):
@@ -35,7 +36,7 @@ def test_transaction_typing_geolocation(geolocation_data, key, value, expected):
 
 
 def test_should_create_point(point_data):
-    point = Points(**point_data)
+    point = Point(**point_data)
 
     assert point.dict() == point_data
 
@@ -44,7 +45,7 @@ def test_should_create_point(point_data):
 def test_should_check_whether_attributes_required_point(point_data, key):
     point_data[key] = None
     with pytest.raises(ValidationError) as exec_info:
-        Points(**point_data)
+        Point(**point_data)
 
     assert exec_info.value.errors()[0]["msg"] == "none is not an allowed value"
 
@@ -54,15 +55,24 @@ def test_should_check_whether_attributes_required_point(point_data, key):
     (
         ("origin", [], "field required"),
         ("destinations", "", "value is not a valid list"),
-        ("destination_points", "", "value is not a valid list"),
     ),
 )
 def test_transaction_typing_point(point_data, key, value, expected):
     point_data[key] = value
     with pytest.raises(ValidationError) as exec_info:
-        Points(**point_data)
+        Point(**point_data)
 
     assert exec_info.value.errors()[0]["msg"] == expected
+
+
+def test_should_throw_maximum_number_destinations_exception(point_data):
+    max_points = settings.MAX_POINTS
+    with pytest.raises(ValidationError) as exec_info:
+        settings.MAX_POINTS = 1
+        Point(**point_data)
+
+    settings.MAX_POINTS = max_points
+    assert exec_info.value.errors()[0]["msg"] == "maximum number of locations reached"
 
 
 def test_should_create_route(route_data):
