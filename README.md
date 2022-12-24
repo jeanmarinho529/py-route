@@ -1,6 +1,6 @@
-![alt text](./docs/logo-py-route.png)
-
 # Py Routes
+
+![alt text](./docs/logo-py-route.png)
 
 ## About
 
@@ -36,3 +36,8 @@ Start the server:
 ```sh
 $ docker-compose up -d
 ```
+
+### Development
+
+Want to contribute? Great!
+Feel free!
